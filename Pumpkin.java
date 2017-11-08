@@ -6,12 +6,26 @@ import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
+/**
+ * A class that represents the pumpkin.
+ * @author Jed Wang, Ryan Nutt
+ */
 public class Pumpkin extends AbstractCharacter {
     
     BufferedImage pumpkin = null;
     GravityHandler gh = null;
+    boolean realGravity = false;
     Graphics window;
 
+    /**
+     * Creates a new Pumpkin
+     * @param x starting x position
+     * @param y starting y position
+     * @param wd width of pumpkin
+     * @param ht height of pumpkin
+     * @param xS initial x speed
+     * @param yS initial y speed
+     */
     public Pumpkin(int x, int y, int wd, int ht, int xS, int yS) {
         super(x, y, wd, ht, xS, yS); 
         gh = new GravityHandler(y, ht);
@@ -21,20 +35,31 @@ public class Pumpkin extends AbstractCharacter {
         }
     }
     
+    /**
+     * Moves the pumpkin according to rules.
+     * May be realistic, depending on <code>realGravity</code>.
+     */
     @Override
     public void move() {
-        if(getX() < getHeight()/2) {
+        if(getX() > 800-getWidth() || getX() < 0) {
             setXSpeed(getXSpeed() * -1);
         }
-        /*if(getY() < getWidth()/2) {
-            setYSpeed(getYSpeed() * -1);
+        setX(getX() + getXSpeed());
+        if(realGravity) {
+            gh.next();
+            setY((int) gh.getCurrentY());
+        } else {
+            if(getY() > 600-getHeight() || getY() < 0) {
+                setYSpeed(getYSpeed() * -1);
+            }
+            setY(getY() + getYSpeed());
         }
-        setY(getY() + getYSpeed());
-        setYSpeed(getYSpeed()-3);*/
-        gh.next();
-        setY((int) gh.getCurrentY());
     }
     
+    /**
+     * Draws a pumpkin at the current place.
+     * @param window the window to draw the pumpkin in
+     */
     @Override
     public void draw(Graphics window) {
         
@@ -68,6 +93,16 @@ public class Pumpkin extends AbstractCharacter {
         window.fillArc(getX() + (getWidth()/3) - (getWidth()/10), (int) (getY() + (getHeight() * 0.7)), (getWidth()/3) + (getWidth()/5), getWidth()/10, 180, 180);
     }
     
+    /**
+     * A method to quickly draw and outline a rounded rectangle.
+     * @param x x position
+     * @param y y position
+     * @param width width of rectangle
+     * @param height height of rectangle
+     * @param arcRadius radius of the arc to round the corners
+     * @param border the color for the border of the rectangle
+     * @param fill the color for the fill of the rectangle
+     */
     private void drawAndFillRoundRect(int x, int y, int width, int height, int arcRadius, Color border, Color fill) {
         window.setColor(fill);
         window.fillRoundRect(x, y, width, height, arcRadius, arcRadius);
@@ -75,6 +110,15 @@ public class Pumpkin extends AbstractCharacter {
         window.drawRoundRect(x, y, width, height, arcRadius, arcRadius);
     }
     
+    /**
+     * A method to quickly draw and outline an oval
+     * @param x x position
+     * @param y y position
+     * @param width width of oval
+     * @param height height of oval
+     * @param border the color for the border of the oval
+     * @param fill the color for the fill of the oval
+     */
     private void drawAndFillOval(int x, int y, int width, int height, Color border, Color fill) {
         window.setColor(fill);
         window.fillOval(x, y, width, height);

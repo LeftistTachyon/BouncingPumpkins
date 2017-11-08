@@ -1,5 +1,9 @@
 import javax.swing.JFrame;
 
+/**
+ * The main class that runs the panels and contains the main method.
+ * @author Jed Wang, Ryan Nutt
+ */
 public class PumpkinRunner extends JFrame {
 
     public static final int WIDTH = 800;

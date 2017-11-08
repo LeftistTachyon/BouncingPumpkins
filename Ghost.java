@@ -5,6 +5,10 @@ import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
+/**
+ * A class that represents a ghost on a <code>Canvas</code>.
+ * @author Jed Wang, Ryan Nutt
+ */
 public class Ghost extends AbstractCharacter {
 
     BufferedImage ghost1 = null, ghost2 = null;
@@ -29,7 +33,14 @@ public class Ghost extends AbstractCharacter {
 
     @Override
     public void move() {
-        // Make your ghost move
+        if(getX() > 800-getWidth() || getX() < 0) {
+            setXSpeed(getXSpeed() * -1);
+        }
+        setX(getX() + getXSpeed());
+        if(getY() > 600-getHeight() || getY() < 0) {
+            setYSpeed(getYSpeed() * -1);
+        }
+        setY(getY() + getYSpeed());
     }
     
 }

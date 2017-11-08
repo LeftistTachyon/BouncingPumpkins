@@ -3,6 +3,10 @@ import java.awt.Color;
 import java.awt.Graphics;
 import javax.swing.JPanel;
 
+/**
+ * A <code>JPanel</code> that tests the drawing of <code>Pumpkins</code>.
+ * @author Ryan Nutt
+ */
 public class TestPanel extends JPanel {
 
         Pumpkin p1, p2, p3, p4;

@@ -1,6 +1,10 @@
 
 import java.awt.Graphics;
 
+/**
+ * An abstract class that represents an object on a <code>Canvas</code>.
+ * @author Ryan Nutt
+ */
 public abstract class AbstractCharacter {
  
     private int x; 

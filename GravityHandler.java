@@ -1,5 +1,6 @@
 /**
- * Uses the equation y = -1/16x^2 + a to find th y value of the object
+ * Uses the equation y = -1/16x^2 + a to find th y value of the object.
+ * @author Jed Wang
  */
 // 600 = 1/16x^2 + a
 // 600 - a = 1/16x^2
