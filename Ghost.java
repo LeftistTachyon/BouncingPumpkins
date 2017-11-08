@@ -33,11 +33,11 @@ public class Ghost extends AbstractCharacter {
 
     @Override
     public void move() {
-        if(getX() > 800-getWidth() || getX() < 0) {
+        if(getX() >= 800-getWidth() || getX() <= 0) {
             setXSpeed(getXSpeed() * -1);
         }
         setX(getX() + getXSpeed());
-        if(getY() > 600-getHeight() || getY() < 0) {
+        if(getY() >= 600-getHeight() || getY() <= 0) {
             setYSpeed(getYSpeed() * -1);
         }
         setY(getY() + getYSpeed());
